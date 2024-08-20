@@ -38,15 +38,24 @@ penguins_adelie <- penguins %>%
 ```
 
 ```{r}
-tibble::tribble(
-  ~`location.	species.	maturity`,
-       "lagoon \tbobcat \tadult",
-     "bluff \tcoyote \tjuvenile",
-           "creek \tfox \tadult",
-    "oaks \tsquirrel \tjuvenile",
-        "bluff \tbobcat \tadult",
-                        "㌀\022︀"
+animals <- tibble::tribble(
+  ~location,   ~species,  ~maturity,
+   "lagoon",   "bobcat",    "adult",
+    "bluff",   "coyote", "juvenile",
+    "creek",      "fox",    "adult",
+     "oaks", "squirrel", "juvenile",
+    "bluff",   "bobcat",    "adult"
   )
+```
+
+```{r}
+sites <- tibble::tribble(
+           ~location,      ~full_site_name, ~jurisdiction,
+             "beach",       "Goleta Beach",     "SB City",
+            "lagoon",        "UCSB Lagoon",        "UCSB",
+             "bluff",       "Ellwood Mesa",     "SB City",
+              "oaks", "Fremont Campground",        "USFS"
+           )
 
 ```
 
@@ -71,6 +80,31 @@ right_join_example <- right_join(animals, sites)
 # inner join example
 inner_join_example <- inner_join(animals, sites)
 ```
+
+```{r}
+# semi join example
+semi_join_example <- semi_join(animals, sites)
+semi_join_test<- animals %>%
+  filter(location %in% sites$location)
+```
+
+```{r}
+#anti join example
+anti_join_example <- anti_join(animals, sites, by = "location")
+
+anti_join_test <- animals %>%
+  filter(!location %in% sites$location)
+```
+
+```{r}
+sites <- sites %>%
+  rename(place = location)
+
+test_join <- full_join(animals, sites, (by = c("location" = "place")))
+```
+
+
+
 
 
 
