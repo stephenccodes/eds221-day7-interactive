@@ -26,6 +26,7 @@ penguins_bd <- penguins %>%
   
 ```
 
+## Refresher 2
 ```{r}
 #*
 penguins_adelie <- penguins %>%
@@ -35,5 +36,41 @@ penguins_adelie <- penguins %>%
             sd_flipper_length = sd(flipper_length_mm, na.rm = TRUE),
             sample_size = n())
 ```
+
+```{r}
+tibble::tribble(
+  ~`location.	species.	maturity`,
+       "lagoon \tbobcat \tadult",
+     "bluff \tcoyote \tjuvenile",
+           "creek \tfox \tadult",
+    "oaks \tsquirrel \tjuvenile",
+        "bluff \tbobcat \tadult",
+                        "㌀\022︀"
+  )
+
+```
+
+
+```{r}
+# full join example
+full_join_example <- full_join(animals, sites)
+```
+
+```{r}
+#left join example
+left_join_example <- left_join(animals, sites)
+```
+
+```{r}
+# right join example
+right_join_example <- right_join(animals, sites)
+```
+
+
+```{r}
+# inner join example
+inner_join_example <- inner_join(animals, sites)
+```
+
 
 
