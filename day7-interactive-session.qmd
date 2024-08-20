@@ -1,0 +1,12 @@
+---
+title: "EDS 221 day 7 interactive"
+author: "Stephen Carroll"
+format: html
+---
+
+```{r}
+library(tidyverse)
+library(palmerpenguins)
+library(lubridate)
+```
+
