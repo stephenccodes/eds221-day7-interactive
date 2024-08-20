@@ -2,6 +2,8 @@
 title: "EDS 221 day 7 interactive"
 author: "Stephen Carroll"
 format: html
+editor_options: 
+  chunk_output_type: console
 ---
 
 ```{r}
@@ -9,4 +11,29 @@ library(tidyverse)
 library(palmerpenguins)
 library(lubridate)
 ```
+
+## Refresher 1
+```{r}
+# make a subset of data that only includes penguins form Biscoe and Dream islands, with the year and sex removed. add a new column with body mass converted to kg and rename the island variable to location
+
+penguins <- penguins
+
+penguins_bd <- penguins %>%
+  filter(island %in% c("Biscoe", "Dream" ))%>%
+  select(-"sex", -"year")%>%
+  mutate(body_mass_kg = body_mass_g / 1000)%>%
+  dplyr::rename(location = island)
+  
+```
+
+```{r}
+#*
+penguins_adelie <- penguins %>%
+  filter(species == "Adelie" & !is.na(flipper_length_mm))%>%
+  group_by(sex) %>%
+  summarise(mean_flipper_length = mean(flipper_length_mm, na.rm = TRUE),
+            sd_flipper_length = sd(flipper_length_mm, na.rm = TRUE),
+            sample_size = n())
+```
+
 
